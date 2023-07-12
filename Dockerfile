@@ -115,11 +115,11 @@ RUN find /src
 RUN pip install --target="/install" /src
 
 # Copy minimal to main image (to keep as small as possible)
-FROM python:${PY_VERSION}-slim
+FROM python:3.10-slim
 
 ARG PY_VERSION
 COPY . .
-COPY --from=builder /install /usr/local/lib/python${PY_VERSION}/site-packages
+COPY --from=builder /install /usr/local/lib/python3.10/site-packages
 #Install ffmpeg and clean
 RUN apt-get -y update
 RUN apt-get -y install --no-install-recommends ffmpeg
